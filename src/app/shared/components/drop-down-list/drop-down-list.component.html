@@ -1,0 +1,6 @@
+<select class="form-select col-3" (change)="changeOption($event.target)">
+  <option value="0">{{ default }}</option>
+  @for (item of items; track item){
+    <option [value]="item.id">{{ item.name }}</option>
+  }
+</select>

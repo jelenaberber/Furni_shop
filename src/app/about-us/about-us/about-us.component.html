@@ -1,0 +1,30 @@
+<app-intro-excerpt [title]="'About Us'">
+</app-intro-excerpt>
+
+<app-choose-us></app-choose-us>
+
+<div class="untree_co-section">
+  <div class="container">
+
+    <div class="row mb-5">
+      <div class="col-lg-5 mx-auto text-center">
+        <h2 class="section-title">Our Team</h2>
+      </div>
+    </div>
+
+    <div class="row">
+
+      @for(person of team; track person.id){
+        <div class="col-12 col-md-6 col-lg-3 mb-5 mb-md-0">
+          <img src="/assets/images/{{ person.img }}" class="img-fluid mb-5">
+          <h3 clas>{{ person.name }}</h3>
+          <span class="d-block position mb-4">{{ person.job }}</span>
+          <p>{{ person.description }}</p>
+       </div>
+      }
+
+    </div>
+  </div>
+</div>
+
+<app-slider></app-slider>

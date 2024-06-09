@@ -1,0 +1,9 @@
+<div class="product-item d-flex flex-column">
+  <a class="d-flex flex-column">
+    <img src="/assets/images/{{ img }}" class="img-fluid product-thumbnail" alt="{{name}}">
+    <h3 class="product-title">{{ name }}</h3>
+    <strong class="product-price mb-2">{{ price }}</strong>
+  </a>
+  <button class="btn me-2" data-id="{{ id }}" (click)="addToCart()">Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
+</div>
+

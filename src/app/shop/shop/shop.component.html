@@ -1,0 +1,43 @@
+<app-intro-excerpt [title]="'Find the perfect '"
+                   [titleSpan]="'furniture for you'"
+                   [shopPage]="true">
+
+</app-intro-excerpt>
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <app-drop-down-list [items]="categories"
+                          [default]="'Choose category'"
+                          (option)="filterProducts($event)">
+      </app-drop-down-list>
+    </div>
+    <div class="col-3">
+      <app-drop-down-list [items]="sortBy"
+                          [default]="'Sort products'"
+                          (option)=sortProducts($event)>
+      </app-drop-down-list>
+    </div>
+  </div>
+</div>
+<div class="untree_co-section product-section before-footer-section">
+  <div class="container">
+    <div class="row">
+      @for (product of itemsPerPage; track product.id){
+        <div class="col-12 col-md-4 col-lg-3 mb-5">
+          <app-item-card [name]="product.name"
+                         [price]="product.price"
+                         [img]="product.img"
+                         [id]="product.id"
+                         (addToCartClicked)="addToCart($event)">
+          </app-item-card>
+        </div>
+      }
+      <mat-paginator [length]="this.filteredProducts.length"
+                     [pageSize]="8"
+                     [pageSizeOptions]="[8, 16, 32]"
+                     aria-label="Select page"
+                     (page)="onPageChange($event)">
+      </mat-paginator>
+    </div>
+  </div>
+</div>

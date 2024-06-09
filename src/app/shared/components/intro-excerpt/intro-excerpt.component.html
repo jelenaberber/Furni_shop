@@ -1,0 +1,25 @@
+<div class="hero mb-5">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-lg-5">
+        <div class="intro-excerpt">
+          <h1>{{ title }} <span class="d-block">{{ titleSpan }}</span></h1>
+          @if(!shopPage){
+            <p class="mb-4">{{ description }}</p>
+            <p>
+              <app-button [color]="'btn-secondary'" [title]="'Shop Now'" ></app-button>
+              <app-button [color]="'btn-white-outline'" [title]="'Explore'" ></app-button>
+            </p>
+          }
+        </div>
+      </div>
+      <div class="col-lg-7">
+        @if(!shopPage){
+          <div class="hero-img-wrap">
+            <img src="/assets/images/couch.png" class="img-fluid">
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

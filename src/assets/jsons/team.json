@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Lawson Arnold",
+    "job": "CEO, Founder, Atty.",
+    "description": "Separated they live in. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.",
+    "img": "person_1.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Patrik White",
+    "job": "CEO, Founder, Atty.",
+    "description": "Separated they live in. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.",
+    "img": "person_3.jpg"
+  },
+  {
+    "id": 1,
+    "name": "Kathryn Ryan",
+    "job": "CEO, Founder, Atty.",
+    "description": "Separated they live in. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.",
+    "img": "person_4.jpg"
+  },
+  {
+    "id": 1,
+    "name": "Jeremy Walker",
+    "job": "CEO, Founder, Atty.",
+    "description": "Separated they live in. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.",
+    "img": "person_2.jpg"
+  }
+]

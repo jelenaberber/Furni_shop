@@ -1,0 +1,26 @@
+.btn.btn-secondary {
+  color: #2f2f2f;
+  background: #f9bf29;
+  border-color: #f9bf29;
+}
+.btn {
+  font-weight: 500;
+  padding: 12px 30px;
+  border-radius: 30px;
+  color: #ffffff;
+  background: #2f2f2f;
+  border-color: #2f2f2f;
+}
+.btn.btn-white-outline {
+  background: transparent;
+  border-width: 2px;
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff !important;
+}
+.btn.btn-white-outline:hover{
+  border-color: white;
+}
+.dark{
+  background: #2f2f2f;
+  color: white;
+}

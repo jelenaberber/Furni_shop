@@ -1,0 +1,12 @@
+h1{
+  font-weight: 530;
+  color: #ffffff;
+  margin-bottom: 50px;
+  font-size: calc(1.375rem + 1.5vw);
+}
+span{
+  margin-top: 20px;
+}
+p{
+  line-height: 28px;
+}

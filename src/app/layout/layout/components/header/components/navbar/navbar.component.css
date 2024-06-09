@@ -1,0 +1,9 @@
+.custom-navbar {
+  background: #3b5d50 !important;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.navbar-brand{
+  letter-spacing: 2px;
+  font-weight: 570;
+}
