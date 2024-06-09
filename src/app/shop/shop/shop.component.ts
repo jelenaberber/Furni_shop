@@ -99,6 +99,7 @@ export class ShopComponent implements OnInit{
   }
 
   pageSlice(){
+    console.log(123)
     this.itemsPerPage = this.filteredProducts.slice(0,8)
   }
 
