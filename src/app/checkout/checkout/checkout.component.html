@@ -1,0 +1,143 @@
+<app-intro-excerpt [title]="'Checkout'"
+                   [shopPage]="true">
+</app-intro-excerpt>
+<div class="untree_co-section">
+  <div class="container">
+    <form [formGroup]="billingForm">
+      <div class="row">
+        <div class="col-md-6 mb-5 mb-md-0">
+          <h2 class="h3 mb-3 text-black">Billing Details</h2>
+          <div class="p-3 p-lg-5 border bg-white">
+            <div class="form-group row">
+              <div class="col-md-6 mt-3">
+                <mat-form-field class="example-full-width">
+                  <mat-label>First name</mat-label>
+                  <input type="text" matInput formControlName="firstName">
+                  @if (billingForm.get('firstName')?.hasError('pattern')) {
+                    <mat-error>Please enter a valid first name</mat-error>
+                  }
+                  @if (billingForm.get('firstName')?.hasError('required')) {
+                    <mat-error>First name is <strong>required</strong></mat-error>
+                  }
+                </mat-form-field>
+              </div>
+              <div class="col-md-6 mt-3">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Last name</mat-label>
+                    <input type="text" matInput formControlName="lastName">
+                    @if (billingForm.get('lastName')?.hasError('pattern')) {
+                      <mat-error>Please enter a valid last name</mat-error>
+                    }
+                    @if (billingForm.get('lastName')?.hasError('required')) {
+                      <mat-error>Last name is <strong>required</strong></mat-error>
+                    }
+                  </mat-form-field>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-md-6 mt-3">
+                <mat-form-field class="example-full-width">
+                  <mat-label>City</mat-label>
+                  <input type="text" matInput formControlName="city">
+                  @if (billingForm.get('city')?.hasError('pattern')) {
+                    <mat-error>Please enter a valid city</mat-error>
+                  }
+                  @if (billingForm.get('city')?.hasError('required')) {
+                    <mat-error>City is <strong>required</strong></mat-error>
+                  }
+                </mat-form-field>
+              </div>
+              <div class="col-md-6 mt-3">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Address</mat-label>
+                  <input type="text" matInput formControlName="address">
+                  @if (billingForm.get('address')?.hasError('pattern')) {
+                    <mat-error>Please enter a valid address</mat-error>
+                  }
+                  @if (billingForm.get('address')?.hasError('required')) {
+                    <mat-error>Address is <strong>required</strong></mat-error>
+                  }
+                </mat-form-field>
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+              <div class="col-md-6 mt-3">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Zip code</mat-label>
+                  <input type="text" matInput formControlName="zipCode">
+                  @if (billingForm.get('zipCode')?.hasError('pattern')) {
+                    <mat-error>Please enter a valid zip code</mat-error>
+                  }
+                  @if (billingForm.get('zipCode')?.hasError('required')) {
+                    <mat-error>Zip code is <strong>required</strong></mat-error>
+                  }
+                </mat-form-field>
+              </div>
+              <div class="col-md-6 mt-3">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Phone</mat-label>
+                  <input type="text" matInput formControlName="phone">
+                  @if (billingForm.get('phone')?.hasError('pattern')) {
+                    <mat-error>Please enter a valid phone number</mat-error>
+                  }
+                  @if (billingForm.get('phone')?.hasError('required')) {
+                    <mat-error>Phone number is <strong>required</strong></mat-error>
+                  }
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-12">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Email</mat-label>
+                  <input type="text" matInput formControlName="email">
+                  @if (billingForm.get('email')?.hasError('pattern')) {
+                    <mat-error>Please enter a valid email</mat-error>
+                  }
+                  @if (billingForm.get('email')?.hasError('required')) {
+                    <mat-error>Email number is <strong>required</strong></mat-error>
+                  }
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row mb-5">
+            <div class="col-md-12">
+              <h2 class="h3 mb-3 text-black">Your Order</h2>
+              <div class="p-3 p-lg-5 border bg-white">
+                <table class="table site-block-order-table mb-5">
+                  <tbody>
+                  <tr>
+                    <td>Cart Subtotal</td>
+                    <td>{{ subtotalPrice }}</td>
+                  </tr>
+                  <tr>
+                    <td>Delivery</td>
+                    <td>{{ delivery }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
+                    <td class="text-black font-weight-bold"><strong>{{ totalPrice }}</strong></td>
+                  </tr>
+                  </tbody>
+                </table>
+
+                <div class="form-group">
+                  <button class="btn btn-dark" (click)="onSubmit()">Place Order</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
