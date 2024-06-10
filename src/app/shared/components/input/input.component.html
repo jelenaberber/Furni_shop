@@ -1,10 +1,15 @@
 <div class="form-group mt-2">
-  @if(label != ''){
-    <label class="text-black">{{ label }}</label>
-    @if(required){
-      <span class="required">*</span>
-    }
-  }
-  <input type="{{ type }}" class="form-control" id="{{ name }}" placeholder="{{placeholder}}">
+  <label *ngIf="label !== ''" class="text-black">{{ label }}<span *ngIf="required" class="required">*</span></label>
+  <input [attr.type]="type"
+         class="form-control"
+         [attr.placeholder]="placeholder"
+         [formControl]="control"
+         (blur)="onTouched()"
+         />
+  <div *ngIf="control.errors && control.touched" class="text-danger">
+    {{ emptyFieldMessage }}
+  </div>
+  <div *ngIf="control.touched && !control.value" class="text-danger">
+    <p class="required">Field is required</p>
+  </div>
 </div>
-

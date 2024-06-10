@@ -37,10 +37,17 @@ export const routes: Routes = [
         loadChildren: () => import("./cart/cart.module").then(m => m.CartModule)
       },
       {
+        path: "checkout",
+        loadChildren: () => import("./checkout/checkout.module").then(m => m.CheckoutModule)
+      },{
+        path: "thankYou",
+        loadChildren: () => import("./thank-you/thank-you.module").then(m => m.ThankYouModule)
+      },
+      {
         path: "**",
         pathMatch: "full",
         component: NotFoundComponent
-      }
+      },
     ]
   },
 ];

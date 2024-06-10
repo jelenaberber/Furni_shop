@@ -3,11 +3,12 @@ import {ProductsInCartService} from "./services/products-in-cart.service";
 import {IProduct} from "../../shared/interfaces/i-product";
 import {SharedModule} from "../../shared/shared.module";
 import {filter} from "rxjs";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [SharedModule],
+  imports: [SharedModule, RouterLink],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })
@@ -42,6 +43,7 @@ export class CartComponent implements OnInit{
           console.log(this.products)
           this.delivery = this.subtotal > 100 ? 0 : 50;
           this.total = this.delivery + this.subtotal;
+          this.setPriceInLocalStorage(this.subtotal, this.total, this.delivery);
         },
         error: (err) =>{
           console.log(err)
@@ -56,9 +58,9 @@ export class CartComponent implements OnInit{
     this.delivery = this.subtotal > 100 ? 0 : 50;
     this.total = this.delivery + this.subtotal;
     this.products = this.products.filter(product => product.id !== id);
-    const filteredIds = this.idArray.filter((arrayId: any) => arrayId !== id);
-    console.log('filtered ids', filteredIds)
-    localStorage.setItem('cartItems', JSON.stringify(filteredIds));
+    this.idArray = this.idArray.filter((arrayId: any) => arrayId !== id);
+    console.log('filtered ids', this.idArray)
+    localStorage.setItem('cartItems', JSON.stringify(this.idArray));
     console.log('cart items', localStorage.getItem('cartItems'))
   }
 
@@ -66,6 +68,7 @@ export class CartComponent implements OnInit{
     this.subtotal = increase ? this.subtotal += price : this.subtotal -= price;
     this.delivery = this.subtotal > 100 ? 0 : 50;
     this.total = this.delivery + this.subtotal;
+    this.setPriceInLocalStorage(this.subtotal, this.total, this.delivery);
   }
 
   increaseQuantity(productId:number){
@@ -89,6 +92,13 @@ export class CartComponent implements OnInit{
     }
   }
 
+  setPriceInLocalStorage(subtotal: number, total: number, delivery: number){
+    localStorage.setItem('subtotalPrice', JSON.stringify(this.subtotal));
+    localStorage.setItem('totalPrice', JSON.stringify(this.total));
+    localStorage.setItem('delivery', JSON.stringify(this.delivery));
+  }
 
 
+    protected readonly localStorage = localStorage;
+  protected readonly JSON = JSON;
 }

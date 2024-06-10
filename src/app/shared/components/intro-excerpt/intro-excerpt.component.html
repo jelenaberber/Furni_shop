@@ -7,8 +7,8 @@
           @if(!shopPage){
             <p class="mb-4">{{ description }}</p>
             <p>
-              <app-button [color]="'btn-secondary'" [title]="'Shop Now'" ></app-button>
-              <app-button [color]="'btn-white-outline'" [title]="'Explore'" ></app-button>
+              <app-button [color]="'btn-secondary'" [title]="'Shop Now'" [link]="'/shop'"></app-button>
+              <app-button [color]="'btn-white-outline'" [title]="'Explore'" [link]="'/aboutUs'"></app-button>
             </p>
           }
         </div>
