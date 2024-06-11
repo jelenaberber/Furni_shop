@@ -16,6 +16,7 @@ export class ItemCardComponent {
   @Input() alt: string = '';
   @Input() price: number = 0;
   @Input() id: number = 0;
+  @Input() shopPage: boolean = true;
   @Output() addToCartClicked: EventEmitter<number> = new EventEmitter<number>();
 
   addToCart(): void {

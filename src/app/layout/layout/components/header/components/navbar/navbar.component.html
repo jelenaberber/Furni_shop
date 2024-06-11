@@ -22,9 +22,9 @@
         <li routerLinkActive="active"><a class="nav-link" routerLink="/contact" ariaCurrentWhenActive="page">Contact us</a></li>
       </ul>
 
-      <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+      <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5 mt-2">
         <li  routerLinkActive="active" >
-          <a class="nav-link" routerLink="/cart"><img src="/assets/images/cart.svg" ariaCurrentWhenActive="page"></a>
+          <mat-icon matBadge="{{ cartItemCount }}" matBadgeColor="warn">shopping_cart</mat-icon>
         </li>
       </ul>
     </div>
