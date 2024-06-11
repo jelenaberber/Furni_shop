@@ -14,7 +14,8 @@
       @for(product of products; track product){
         <div class="col-12 col-md-4 col-lg-3 mb-5">
           <app-item-card [name]="product.name"
-                         [img]="product.img"
+                         [alt]="product.img.alt"
+                         [path]="product.img.path"
                          [price]="product.price"
                          [id]="product.id">
           </app-item-card>

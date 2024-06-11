@@ -1,7 +1,7 @@
 <app-intro-excerpt [title]="'Cart'"
                    [shopPage]="true">
 </app-intro-excerpt>
-@if(!localStorage.getItem('cartItems')){
+@if(!localStorage.getItem('cartItems') || localStorage.getItem('cartItems') == '[]' ){
   <div class="untree_co-section">
     <div class="container">
       <div class="row">
@@ -12,7 +12,8 @@
       </div>
     </div>
   </div>
-} @else {
+}
+@else {
   <div class="untree_co-section before-footer-section">
     <div class="container">
       <div class="row mb-5">
@@ -33,7 +34,7 @@
                 @for (product of products; track product.id){
                   <tr>
                     <td class="product-thumbnail">
-                      <img src="/assets/images/{{ product.img }}" alt="{{ product.name }}" class="img-fluid">
+                      <img src="/assets/images/{{ product.img.path }}" alt="{{ product.img.alt }}" class="img-fluid">
                     </td>
                     <td class="product-name">
                       <h2 class="h5 text-black">{{ product.name }}</h2>

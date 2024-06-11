@@ -52,6 +52,7 @@ import {FeatureComponent} from "./components/feature/feature.component";
 import {InputComponent} from "./components/input/input.component";
 import {ItemCardComponent} from "./components/item-card/item-card.component";
 import {DropDownListComponent} from "./components/drop-down-list/drop-down-list.component";
+import {PersonCardComponent} from "./components/person-card/person-card.component";
 
 @NgModule({
   declarations: [ ],
@@ -100,7 +101,8 @@ import {DropDownListComponent} from "./components/drop-down-list/drop-down-list.
     FeatureComponent,
     InputComponent,
     ItemCardComponent,
-    DropDownListComponent
+    DropDownListComponent,
+    PersonCardComponent
   ],
   exports: [
     MatAutocompleteModule,
@@ -146,7 +148,8 @@ import {DropDownListComponent} from "./components/drop-down-list/drop-down-list.
     FeatureComponent,
     InputComponent,
     ItemCardComponent,
-    DropDownListComponent
+    DropDownListComponent,
+    PersonCardComponent
   ]
 })
 export class SharedModule { }

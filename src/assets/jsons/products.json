@@ -4,7 +4,10 @@
     "name" : "Nordic Chair",
     "description" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio",
     "price" : 50,
-    "img": "product-1.png",
+    "img": {
+      "path" : "product-1.png",
+      "alt" : "Nordic Chair"
+    },
     "category_id": 1,
     "availability": true
   },
@@ -13,7 +16,10 @@
     "name" : "Kruzo Aero Chair",
     "description" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio",
     "price" : 78,
-    "img": "product-2.png",
+    "img": {
+      "path" : "product-2.png",
+      "alt" : "Kruzo Aero Chair"
+    },
     "category_id": 2,
     "availability": true
   },
@@ -22,7 +28,10 @@
     "name" : "Ergonomic Chair",
     "description" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio",
     "price" : 43,
-    "img": "product-3.png",
+    "img": {
+      "path" : "product-3.png",
+      "alt" : "Ergonomic Chair"
+    },
     "category_id": 3,
     "availability": true
   },
@@ -31,7 +40,10 @@
     "name" : "Nordic Chair",
     "description" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio",
     "price" : 50,
-    "img": "product-1.png",
+    "img": {
+      "path" : "product-1.png",
+      "alt" : "Nordic Chair"
+    },
     "category_id": 4,
     "availability": true
   },
@@ -40,7 +52,10 @@
     "name" : "Kruzo Aero Chair",
     "description" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio",
     "price" : 78,
-    "img": "product-1.png",
+    "img": {
+      "path" : "product-2.png",
+      "alt" : "Nordic Chair"
+    },
     "category_id": 1,
     "availability": true
   },
@@ -49,7 +64,10 @@
     "name" : "Ergonomic Chair",
     "description" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio",
     "price" : 43,
-    "img": "product-1.png",
+    "img": {
+      "path" : "product-3.png",
+      "alt" : "Nordic Chair"
+    },
     "category_id": 1,
     "availability": true
   },
@@ -58,7 +76,10 @@
     "name" : "Nordic Chair",
     "description" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio",
     "price" : 50,
-    "img": "product-1.png",
+    "img": {
+      "path" : "product-1.png",
+      "alt" : "Nordic Chair"
+    },
     "category_id": 2,
     "availability": true
   },
@@ -67,7 +88,10 @@
     "name" : "Kruzo Aero Chair",
     "description" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio",
     "price" : 78,
-    "img": "product-1.png",
+    "img": {
+      "path" : "product-2.png",
+      "alt" : "Nordic Chair"
+    },
     "category_id": 2,
     "availability": true
   },
@@ -76,7 +100,10 @@
     "name" : "Ergonomic Chair",
     "description" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio",
     "price" : 43,
-    "img": "product-1.png",
+    "img": {
+      "path" : "product-3.png",
+      "alt" : "Nordic Chair"
+    },
     "category_id": 2,
     "availability": true
   },
@@ -85,7 +112,10 @@
     "name" : "Nordic Chair",
     "description" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio",
     "price" : 50,
-    "img": "product-1.png",
+    "img": {
+      "path" : "product-1.png",
+      "alt" : "Nordic Chair"
+    },
     "category_id": 3,
     "availability": false
   },
@@ -94,7 +124,10 @@
     "name" : "Kruzo Aero Chair",
     "description" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio",
     "price" : 78,
-    "img": "product-1.png",
+    "img": {
+      "path" : "product-2.png",
+      "alt" : "Nordic Chair"
+    },
     "category_id": 3,
     "availability": true
   },
@@ -103,7 +136,10 @@
     "name" : "Ergonomic Chair",
     "description" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio",
     "price" : 43,
-    "img": "product-1.png",
+    "img": {
+      "path" : "product-3.png",
+      "alt" : "Nordic Chair"
+    },
     "category_id": 4,
     "availability": false
   }

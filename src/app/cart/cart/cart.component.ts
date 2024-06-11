@@ -28,6 +28,7 @@ export class CartComponent implements OnInit{
   delivery: number = 0;
 
   ngOnInit():void {
+    console.log(localStorage.getItem('cartItems'));
     if (this.idsOfProductsInCart) {
       this.productsInCartService.getAll().subscribe({
         next: (data)=>{

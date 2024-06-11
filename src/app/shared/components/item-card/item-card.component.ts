@@ -1,17 +1,19 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {ButtonComponent} from "../button/button.component";
+import {CurrencyPipe} from "@angular/common";
 
 @Component({
   selector: 'app-item-card',
   standalone: true,
-  imports: [ButtonComponent],
+  imports: [ButtonComponent, CurrencyPipe],
   templateUrl: './item-card.component.html',
   styleUrl: './item-card.component.css'
 })
 export class ItemCardComponent {
 
   @Input() name: string = '';
-  @Input() img: string = '';
+  @Input() path: string = '';
+  @Input() alt: string = '';
   @Input() price: number = 0;
   @Input() id: number = 0;
   @Output() addToCartClicked: EventEmitter<number> = new EventEmitter<number>();
