@@ -4,20 +4,20 @@
     "name" : "Maria Jones",
     "img" : "person-1.png",
     "position" : "CEO, Co-Founder, XYZ Inc.",
-    "testimony" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer convallis volutpat dui quis scelerisque."
+    "testimony" : "I couldn't be happier with the furniture I purchased here. The craftsmanship is outstanding, and each piece exudes both comfort and style. It has truly transformed my living space into a cozy yet elegant haven. Highly recommended for anyone looking for quality furniture that stands the test of time."
   },
   {
     "id" : 2,
     "name" : "Ana Jones",
     "img" : "person-1.png",
     "position" : "CEO, Co-Founder, XYZ Inc.",
-    "testimony" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer convallis volutpat dui quis scelerisque."
+    "testimony" : "Our experience with this furniture store was exceptional. From the moment we walked in, the staff was knowledgeable and helpful, guiding us to find pieces that perfectly complemented our home decor. The quality is superb, and every detail is crafted with precision. It's made our home feel inviting and sophisticated"
   },
   {
     "id" : 3,
     "name" : "Chris Jones",
     "img" : "person-1.png",
     "position" : "CEO, Co-Founder, XYZ Inc.",
-    "testimony" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer convallis volutpat dui quis scelerisque."
+    "testimony" : "The furniture we bought here exceeded our expectations in every way. Not only is it visually stunning, but it's also incredibly durable and comfortable. The design effortlessly blends modern aesthetics with practical functionality, making our living areas both stylish and user-friendly. This store is definitely our go-to for future furniture needs."
   }
 ]

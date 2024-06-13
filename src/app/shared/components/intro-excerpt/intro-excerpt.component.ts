@@ -12,5 +12,5 @@ export class IntroExcerptComponent {
   @Input() title: string = "";
   @Input() titleSpan: string = "";
   @Input() shopPage: boolean = false;
-  description: string = 'Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.';
+  description: string = 'At Furni, we believe that your home should reflect your personality and lifestyle. Our personalized design services are tailored to meet your unique needs and preferences.';
 }

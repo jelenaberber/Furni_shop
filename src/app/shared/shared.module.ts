@@ -54,6 +54,9 @@ import {ItemCardComponent} from "./components/item-card/item-card.component";
 import {DropDownListComponent} from "./components/drop-down-list/drop-down-list.component";
 import {PersonCardComponent} from "./components/person-card/person-card.component";
 
+// Services
+import {CartService} from "./services/cart.service";
+
 @NgModule({
   declarations: [ ],
   imports: [
@@ -149,7 +152,8 @@ import {PersonCardComponent} from "./components/person-card/person-card.componen
     InputComponent,
     ItemCardComponent,
     DropDownListComponent,
-    PersonCardComponent
-  ]
+    PersonCardComponent,
+  ],
+  providers: [CartService]
 })
 export class SharedModule { }

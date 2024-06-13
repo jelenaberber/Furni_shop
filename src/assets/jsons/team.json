@@ -1,30 +1,30 @@
 [
   {
     "id": 1,
-    "name": "Lawson Arnold",
-    "job": "CEO, Founder, Atty.",
-    "description": "Separated they live in. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.",
+    "name": "John Smith",
+    "job": "CEO, Founder",
+    "description": "John brings extensive leadership experience to our company, steering strategic decisions and fostering a culture of innovation. He is passionate about creating meaningful impact in the furniture industry, driving the team towards excellence.",
     "img": "person_1.jpg"
   },
   {
     "id": 2,
-    "name": "Patrik White",
-    "job": "CEO, Founder, Atty.",
-    "description": "Separated they live in. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.",
+    "name": "Michael Johnson",
+    "job": "Operations Manager",
+    "description": "Michael ensures seamless operations from production to delivery, optimizing efficiency and customer satisfaction. He enjoys the dynamic challenges of his role and contributing to the company's growth and success.",
     "img": "person_3.jpg"
   },
   {
     "id": 1,
-    "name": "Kathryn Ryan",
-    "job": "CEO, Founder, Atty.",
-    "description": "Separated they live in. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.",
+    "name": "Emily Brown",
+    "job": "Chief Designer",
+    "description": "Emily's creativity and attention to detail define our product aesthetics, ensuring each piece reflects elegance and functionality. She loves transforming ideas into beautiful designs that enhance customers' living spaces.",
     "img": "person_4.jpg"
   },
   {
     "id": 1,
     "name": "Jeremy Walker",
-    "job": "CEO, Founder, Atty.",
-    "description": "Separated they live in. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.",
+    "job": "Customer Relations Manager",
+    "description": "Jeremy is dedicated to providing exceptional service and building strong relationships with our customers. He finds fulfillment in helping clients find the perfect furniture solutions for their homes, ensuring their satisfaction and loyalty.",
     "img": "person_2.jpg"
   }
 ]

@@ -10,21 +10,23 @@
     <div class="collapse navbar-collapse" id="navbarsFurni">
       <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
         <li routerLinkActive="active">
-          <a class="nav-link" routerLink="/home" ariaCurrentWhenActive="page">Home</a>
+          <a class="nav-link" routerLink="/home">Home</a>
         </li>
         <li routerLinkActive="active">
-          <a class="nav-link" routerLink="/shop" ariaCurrentWhenActive="page">Shop</a>
+          <a class="nav-link" routerLink="/shop">Shop</a>
         </li>
         <li routerLinkActive="active">
-          <a class="nav-link" routerLink="/aboutUs" ariaCurrentWhenActive="page">About us</a>
+          <a class="nav-link" routerLink="/aboutUs">About us</a>
         </li>
-        <li routerLinkActive="active"><a class="nav-link" routerLink="/support" ariaCurrentWhenActive="page">Services</a></li>
-        <li routerLinkActive="active"><a class="nav-link" routerLink="/contact" ariaCurrentWhenActive="page">Contact us</a></li>
+        <li routerLinkActive="active"><a class="nav-link" routerLink="/support" >Services</a></li>
+        <li routerLinkActive="active"><a class="nav-link" routerLink="/contact">Contact us</a></li>
       </ul>
 
       <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5 mt-2">
-        <li  routerLinkActive="active" >
-          <mat-icon matBadge="{{ cartItemCount }}" matBadgeColor="warn">shopping_cart</mat-icon>
+        <li  routerLinkActive="active">
+          <a routerLink="/cart" class="text-white">
+            <mat-icon matBadge="{{ cartItemCount }}" aria-hidden="false" matBadgeColor="warn">shopping_cart</mat-icon>
+          </a>
         </li>
       </ul>
     </div>

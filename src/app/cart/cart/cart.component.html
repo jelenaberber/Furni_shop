@@ -26,7 +26,6 @@
                 <th class="product-name">Product</th>
                 <th class="product-price">Price</th>
                 <th class="product-quantity">Quantity</th>
-                <th class="product-total">Total</th>
                 <th class="product-remove">Remove</th>
               </tr>
               </thead>
@@ -39,8 +38,8 @@
                     <td class="product-name">
                       <h2 class="h5 text-black">{{ product.name }}</h2>
                     </td>
-                    <td>{{ product.price }}</td>
-                    <td>
+                    <td>{{ product.price | currency}}</td>
+                    <td class="margin-left">
                       <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
                         <div class="input-group-prepend">
                           <button (click)="decreaseQuantity(product.id)" class="btn btn-outline-black decrease" type="button">&minus;</button>
@@ -51,7 +50,6 @@
                         </div>
                       </div>
                     </td>
-                    <td>{{ product.price }}</td>
                     <td><button (click)="removeProductFromCart(product.id)" class="btn btn-black btn-sm">X</button></td>
                   </tr>
                 }
@@ -82,7 +80,7 @@
                   <span class="text-black">Subtotal</span>
                 </div>
                 <div class="col-md-6 text-right">
-                  <strong class="text-black">{{ subtotal }}</strong>
+                  <strong class="text-black">{{ subtotal | currency}}</strong>
                 </div>
               </div>
               <div class="row mb-3">
@@ -90,7 +88,7 @@
                   <span class="text-black">Delivery</span>
                 </div>
                 <div class="col-md-6 text-right">
-                  <strong class="text-black">{{ delivery }}</strong>
+                  <strong class="text-black">{{ delivery | currency}}</strong>
                 </div>
               </div>
               <div class="row mb-5">
@@ -98,7 +96,7 @@
                   <span class="text-black">Total</span>
                 </div>
                 <div class="col-md-6 text-right">
-                  <strong class="text-black">{{ total }}</strong>
+                  <strong class="text-black">{{ total | currency }}</strong>
                 </div>
               </div>
 

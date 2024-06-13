@@ -1,10 +1,11 @@
-import {Component, DoCheck, EventEmitter, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, DoCheck, EventEmitter, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {ProductsService} from "./services/products.service";
 import {IProduct} from "../../shared/interfaces/i-product";
 import {SharedModule} from "../../shared/shared.module";
 import {PageEvent} from "@angular/material/paginator";
 import {CategoriesService} from "./services/categories.service";
 import {ICategory} from "../../shared/interfaces/i-category";
+import {CartService} from "../../shared/services/cart.service";
 
 @Component({
   selector: 'app-shop',
@@ -18,9 +19,11 @@ export class ShopComponent implements OnInit{
   constructor(
     private productsService: ProductsService,
     private categoriesService: CategoriesService,
+    private cartService: CartService
   ) {
   }
 
+  @Output() cartItemCountChange = new EventEmitter<number>();
   products: IProduct[] = [];
   filteredProducts: IProduct[] = [];
   itemsPerPage :IProduct[] = [];
@@ -42,6 +45,7 @@ export class ShopComponent implements OnInit{
   ngOnInit() {
     this.getProducts();
     this.getCategories();
+    this.updateCartItemCount();
   }
 
   getProducts(){
@@ -78,6 +82,14 @@ export class ShopComponent implements OnInit{
     cartItems.push(productId);
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
     console.log(localStorage.getItem('cartItems'));
+
+    this.updateCartItemCount();
+  }
+
+  updateCartItemCount(): void {
+    let cartItems = JSON.parse(localStorage.getItem('cartItems') || "[]");
+    this.cartService.cartItemCount = cartItems.length;
+    console.log(this.cartService.cartItemCount)
   }
 
   filterProducts(categoryId : number | string) :void{

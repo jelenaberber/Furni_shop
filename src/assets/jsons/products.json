@@ -2,10 +2,10 @@
   {
     "id": 1,
     "name" : "Nordic Chair",
-    "description" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio",
+    "description" : "Stylish and comfortable, the Nordic Chair is perfect for any modern home. Crafted from sustainable materials for a timeless look.",
     "price" : 50,
     "img": {
-      "path" : "product-1.png",
+      "path" : "Nordic-chair.jpg",
       "alt" : "Nordic Chair"
     },
     "category_id": 1,
@@ -13,135 +13,135 @@
   },
   {
     "id": 2,
-    "name" : "Kruzo Aero Chair",
-    "description" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio",
+    "name" : "Nordic Bed",
+    "description" : "Experience ultimate comfort with the Nordic Bed, featuring a sleek and modern design. Made from durable materials, it ensures a restful night's sleep.",
     "price" : 78,
     "img": {
-      "path" : "product-2.png",
-      "alt" : "Kruzo Aero Chair"
-    },
-    "category_id": 2,
-    "availability": true
-  },
-  {
-    "id": 3,
-    "name" : "Ergonomic Chair",
-    "description" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio",
-    "price" : 43,
-    "img": {
-      "path" : "product-3.png",
-      "alt" : "Ergonomic Chair"
+      "path" : "Sophisticated_Bed.jpg",
+      "alt" : "Nordic Bed"
     },
     "category_id": 3,
     "availability": true
   },
   {
+    "id": 3,
+    "name" : "Minimalist Chair",
+    "description" : "Sleek and simple, the Minimalist Chair fits seamlessly into any room. Made from durable wood.",
+    "price" : 43,
+    "img": {
+      "path" : "minimalist-chair2.jpg",
+      "alt" : "Minimalist Chair"
+    },
+    "category_id": 1,
+    "availability": true
+  },
+  {
     "id": 4,
-    "name" : "Nordic Chair",
-    "description" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio",
+    "name" : "Contemporary Dining Table",
+    "description" : "This dining table features clean lines and a modern design. Built from high-quality wood, it comfortably seats six.",
     "price" : 50,
     "img": {
-      "path" : "product-1.png",
-      "alt" : "Nordic Chair"
+      "path" : "Contemporary-table.jpg",
+      "alt" : "Contemporary Dining Table"
     },
-    "category_id": 4,
+    "category_id": 2,
     "availability": true
   },
   {
     "id": 5,
-    "name" : "Kruzo Aero Chair",
-    "description" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio",
+    "name" : "Minimalist Table",
+    "description" : "The Minimalist Table boasts a clean, elegant design suitable for any interior. Crafted from high-quality wood, it provides both functionality and style.",
     "price" : 78,
     "img": {
-      "path" : "product-2.png",
-      "alt" : "Nordic Chair"
+      "path" : "minimalist-table.jpg",
+      "alt" : "Minimalist Table"
     },
-    "category_id": 1,
+    "category_id": 2,
     "availability": true
   },
   {
     "id": 6,
-    "name" : "Ergonomic Chair",
-    "description" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio",
+    "name" : "Rustic Table",
+    "description" : "The Rustic Table features a charming, rugged design that adds warmth to any space. Crafted from reclaimed wood, it’s both eco-friendly and sturdy.",
     "price" : 43,
     "img": {
-      "path" : "product-3.png",
-      "alt" : "Nordic Chair"
+      "path" : "Rustic_Table.jpg",
+      "alt" : "Rustic Table"
+    },
+    "category_id": 2,
+    "availability": true
+  },
+  {
+    "id": 7,
+    "name" : "Modern Bed",
+    "description" : "The Modern Bed provides a contemporary look with clean lines and a minimalist design. Constructed from robust materials for long-lasting support.",
+    "price" : 50,
+    "img": {
+      "path" : "modern-bed.jpg",
+      "alt" : "Modern Bed"
+    },
+    "category_id": 3,
+    "availability": true
+  },
+  {
+    "id": 8,
+    "name" : "Classic Chair",
+    "description" : "The Classic Chair offers a blend of traditional style and modern comfort. Its elegant design and plush seating make it perfect for any home.",
+    "price" : 78,
+    "img": {
+      "path" : "classic-chair.jpg",
+      "alt" : "Classic Chair"
     },
     "category_id": 1,
     "availability": true
   },
   {
-    "id": 7,
-    "name" : "Nordic Chair",
-    "description" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio",
-    "price" : 50,
-    "img": {
-      "path" : "product-1.png",
-      "alt" : "Nordic Chair"
-    },
-    "category_id": 2,
-    "availability": true
-  },
-  {
-    "id": 8,
-    "name" : "Kruzo Aero Chair",
-    "description" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio",
-    "price" : 78,
-    "img": {
-      "path" : "product-2.png",
-      "alt" : "Nordic Chair"
-    },
-    "category_id": 2,
-    "availability": true
-  },
-  {
     "id": 9,
-    "name" : "Ergonomic Chair",
-    "description" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio",
+    "name" : "Urban Table",
+    "description" : "The Urban Table brings a touch of industrial chic to your dining area. Its sleek design and durable construction make it ideal for everyday use.",
     "price" : 43,
     "img": {
-      "path" : "product-3.png",
-      "alt" : "Nordic Chair"
+      "path" : "urban-table.jpg",
+      "alt" : "Urban Table"
     },
     "category_id": 2,
     "availability": true
   },
   {
     "id": 10,
-    "name" : "Nordic Chair",
-    "description" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio",
+    "name" : "Sophisticated Bed",
+    "description" : "The Sophisticated Bed offers a perfect blend of luxury and comfort. Its elegant design and high-quality construction ensure a restful night's sleep and timeless style.",
     "price" : 50,
     "img": {
-      "path" : "product-1.png",
-      "alt" : "Nordic Chair"
+      "path" : "Sophisticated.jpg",
+      "alt" : "Sophisticated Bed"
     },
     "category_id": 3,
     "availability": false
   },
   {
     "id": 11,
-    "name" : "Kruzo Aero Chair",
-    "description" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio",
+    "name" : "Luxe Chair",
+    "description" : "The Luxe Chair combines luxury and comfort with its premium upholstery and elegant design. Perfect for adding a touch of sophistication to any room.",
     "price" : 78,
     "img": {
-      "path" : "product-2.png",
-      "alt" : "Nordic Chair"
+      "path" : "luxe-chair.jpg",
+      "alt" : "Luxe Chair"
     },
-    "category_id": 3,
+    "category_id": 1,
     "availability": true
   },
   {
     "id": 12,
-    "name" : "Ergonomic Chair",
-    "description" : "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio",
+    "name" : "Cozy Bed",
+    "description" : "The Cozy Bed is designed for ultimate relaxation with its plush, supportive structure. Made from durable materials, it adds warmth and comfort to any bedroom decor.",
     "price" : 43,
     "img": {
-      "path" : "product-3.png",
-      "alt" : "Nordic Chair"
+      "path" : "Cozy_Bed.jpg",
+      "alt" : "Cozy Bed"
     },
-    "category_id": 4,
-    "availability": false
+    "category_id": 3,
+    "availability": true
   }
 
 ]

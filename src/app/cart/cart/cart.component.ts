@@ -1,14 +1,12 @@
-import {Component, OnInit, Inject, SimpleChanges} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProductsInCartService} from "./services/products-in-cart.service";
-import {IProduct} from "../../shared/interfaces/i-product";
 import {SharedModule} from "../../shared/shared.module";
-import {filter} from "rxjs";
 import {RouterLink} from "@angular/router";
-
+import {CurrencyPipe} from "@angular/common";
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [SharedModule, RouterLink],
+  imports: [SharedModule, RouterLink, CurrencyPipe],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })
