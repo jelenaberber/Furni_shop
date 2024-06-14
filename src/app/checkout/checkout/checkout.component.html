@@ -115,15 +115,15 @@
                   <tbody>
                   <tr>
                     <td>Cart Subtotal</td>
-                    <td>{{ subtotalPrice }}</td>
+                    <td>{{ subtotalPrice | currency}}</td>
                   </tr>
                   <tr>
                     <td>Delivery</td>
-                    <td>{{ delivery }}</td>
+                    <td>{{ delivery | currency }}</td>
                   </tr>
                   <tr>
                     <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
-                    <td class="text-black font-weight-bold"><strong>{{ totalPrice }}</strong></td>
+                    <td class="text-black font-weight-bold"><strong>{{ totalPrice | currency }}</strong></td>
                   </tr>
                   </tbody>
                 </table>

@@ -2,11 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {ProductsInCartService} from "./services/products-in-cart.service";
 import {SharedModule} from "../../shared/shared.module";
 import {RouterLink} from "@angular/router";
-import {CurrencyPipe} from "@angular/common";
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [SharedModule, RouterLink, CurrencyPipe],
+  imports: [SharedModule, RouterLink],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })

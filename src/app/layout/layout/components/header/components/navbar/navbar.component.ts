@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {RouterLink, RouterLinkActive} from "@angular/router";
-import {SharedModule} from "../../../../../../shared/shared.module";
-import {CartService} from "../../../../../../shared/services/cart.service";
+import {Component, OnInit, SimpleChanges, ChangeDetectorRef} from '@angular/core';
+import { RouterLink, RouterLinkActive } from "@angular/router";
+import { SharedModule } from "../../../../../../shared/shared.module";
+import { CartService } from "../../../../../../shared/services/cart.service";
+import {Observable, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-navbar',
@@ -12,24 +13,23 @@ import {CartService} from "../../../../../../shared/services/cart.service";
     SharedModule
   ],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
   cartItemCount: number = 0;
+  private subscription: Subscription = new Subscription();
+  constructor(
+    private cartService: CartService,
+    private cdRef: ChangeDetectorRef
+  ) {}
 
-  constructor(private cartService: CartService) {
+  ngOnInit() {
+    this.subscription = this.cartService.cartItemCount$.subscribe(
+      count => {
+        this.cartItemCount = count;
+        console.log('NavbarComponent: Updated cart item count to', this.cartItemCount);
+        this.cdRef.detectChanges();
+      }
+    );
   }
-
-  ngOnInit(): void {
-    this.cartService.cartItemCountChange.subscribe((count: number) => {
-      this.cartItemCount = count;
-      console.log('Updated cart item count in NavbarComponent:', this.cartItemCount);
-    });
-
-    this.cartItemCount = this.cartService.cartItemCount;
-    console.log('NavbarComponent:', this.cartItemCount);
-  }
-
-
 }

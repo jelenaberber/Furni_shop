@@ -2,6 +2,7 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {ButtonComponent} from "../button/button.component";
 import {CurrencyPipe} from "@angular/common";
 
+
 @Component({
   selector: 'app-item-card',
   standalone: true,
