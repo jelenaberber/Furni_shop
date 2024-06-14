@@ -4,7 +4,7 @@ import {ThankYouComponent} from "./thank-you/thank-you.component";
 
 const routes: Routes = [{
   path: '',
-  component: ThankYouComponent
+  component: ThankYouComponent,
 }];
 
 @NgModule({

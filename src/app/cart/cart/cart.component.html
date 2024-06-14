@@ -44,7 +44,9 @@
                         <div class="input-group-prepend">
                           <button (click)="decreaseQuantity(product.id)" class="btn btn-outline-black decrease" type="button">&minus;</button>
                         </div>
-                        <input type="text" class="form-control text-center quantity-amount" value="{{ product.quantity}}" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                        <div class="d-flex justify-content-center col-6">
+                          <p>{{ product.quantity}}</p>
+                        </div>
                         <div class="input-group-append">
                           <button (click)="increaseQuantity(product.id)" class="btn btn-outline-black increase" type="button">&plus;</button>
                         </div>
