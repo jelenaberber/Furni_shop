@@ -13,8 +13,8 @@ import {CurrencyPipe} from "@angular/common";
 export class ItemCardComponent {
 
   @Input() name: string = '';
-  @Input() path: string = '';
-  @Input() alt: string = '';
+  @Input() path?: string = '';
+  @Input() alt?: string = '';
   @Input() price: number = 0;
   @Input() id: number = 0;
   @Input() shopPage: boolean = true;

@@ -16,12 +16,12 @@ export class ApiService {
   private basePath = "http://localhost:4200/assets/jsons/";
 
   getAll():Observable<any>{
-    return this.http.get(config.LOCAL + this.apiPath)
+    return this.http.get(config.SERVER + this.apiPath)
   }
 
-  // get(id :number | string):Observable<any>{
-  //   return this.http.get(config.LOCAL + this.apiPath + "/" + id)
-  // }
+  get(id :number | string):Observable<any>{
+    return this.http.get(config.LOCAL + this.apiPath + "/" + id)
+  }
   //
   // create(dataToSend: any):Observable<any>{
   //   return this.http.post(config.LOCAL + this.apiPath, dataToSend)

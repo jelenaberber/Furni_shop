@@ -3,10 +3,10 @@ export interface IProduct {
   name: string;
   description: string;
   price: number;
-  img: {
+  image: {
     path: string;
     alt: string;
   };
   category_id: number;
-  availability: boolean
+  available: boolean
 }

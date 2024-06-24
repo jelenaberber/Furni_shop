@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import {Component, OnInit, EventEmitter, Output, OnChanges} from '@angular/core';
 import { ProductsService } from "./services/products.service";
 import { IProduct } from "../../shared/interfaces/i-product";
 import { SharedModule } from "../../shared/shared.module";
@@ -14,7 +14,7 @@ import { CartService } from "../../shared/services/cart.service";
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.css']
 })
-export class ShopComponent implements OnInit {
+export class ShopComponent implements OnInit, OnChanges {
 
   constructor(
     private productsService: ProductsService,
@@ -24,11 +24,9 @@ export class ShopComponent implements OnInit {
 
   @Output() cartItemCountChange = new EventEmitter<number>();
   products: IProduct[] = [];
-  filteredProducts: IProduct[] = [];
-  itemsPerPage: IProduct[] = [];
+  category_id: any = 0;
+  sort: any = '';
   categories: ICategory[] = [];
-  selectedSortOption: string | number = '';
-  currentPage: number = 0;
 
   sortBy: any[] = [
     { 'id': 'asc', 'name': 'Price asc' },
@@ -36,26 +34,31 @@ export class ShopComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.getProducts();
+    this.getProducts('0', '');
     this.getCategories();
   }
 
-  getProducts() {
-    this.productsService.getAll().subscribe({
-      next: data => {
+  getProducts(categoryId: number | string, sortDirection: string) {
+    this.productsService.getProducts(categoryId, sortDirection).subscribe(
+      (data) => {
         console.log(data);
-        for (let product of data) {
-          if (product.availability) {
-            this.products.push(product);
-          }
-        }
-        this.filteredProducts = this.products;
-        this.pageSlice();
+        this.products = data.filter(product => product.available).map(product => {
+          const primaryImage = product.image ? product.image : null;
+          product.image = {
+            path: primaryImage && primaryImage.path ? primaryImage.path : 'luxe-chair.jpg',
+            alt: primaryImage && primaryImage.alt ? primaryImage.alt : 'Default image description'
+          };
+          return product;
+        });
       },
-      error: (err) => {
-        console.log(err);
+      (error) => {
+        console.error('Error fetching products', error);
       }
-    })
+    );
+  }
+
+  ngOnChanges(){
+
   }
 
   getCategories() {
@@ -69,43 +72,20 @@ export class ShopComponent implements OnInit {
     })
   }
 
-  addToCart(productId: number): void {
-    let cartItems = JSON.parse(localStorage.getItem('cartItems') || "[]");
-    cartItems.push(productId);
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    console.log(localStorage.getItem('cartItems'));
-  }
+  addToCart(){
 
+  }
 
   filterProducts(categoryId: number | string): void {
-    this.filteredProducts = categoryId == 0 ? this.products
-      : this.products.filter(product => product.category_id == categoryId);
-    this.applySort();
-    this.pageSlice();
+    console.log(categoryId)
+    this.category_id = categoryId;
+    this.getProducts(this.category_id, this.sort)
   }
 
-  sortProducts(sortId: string | number): void {
-    this.selectedSortOption = sortId;
-    this.applySort();
+  sortProducts(sortId: number | string): void {
+    console.log(sortId)
+    this.sort = sortId;
+    this.getProducts(this.category_id, this.sort)
   }
 
-  applySort(): void {
-    this.itemsPerPage = this.selectedSortOption == 'asc' ? this.filteredProducts.sort((a, b) => a.price - b.price)
-      : this.filteredProducts.sort((a, b) => b.price - a.price);
-    this.pageSlice();
-  }
-
-  pageSlice() {
-    console.log(123);
-    this.itemsPerPage = this.filteredProducts.slice(0, 8);
-  }
-
-  onPageChange(event: PageEvent) {
-    const startIndex = event.pageIndex * event.pageSize;
-    let endIndex = (event.pageIndex + 1) * event.pageSize;
-    if (endIndex > this.filteredProducts.length) {
-      endIndex = this.filteredProducts.length;
-    }
-    this.itemsPerPage = this.filteredProducts.slice(startIndex, endIndex);
-  }
 }

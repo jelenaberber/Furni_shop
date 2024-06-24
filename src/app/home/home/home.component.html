@@ -45,8 +45,8 @@
       @for (product of popularProducts; track product.id){
         <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
            <app-person-card [name]="product.name"
-                            [path]="product.img.path"
-                            [alt]="product.img.alt"
+                            [path]="product.image.path"
+                            [alt]="product.image.alt"
                             [description]="product.description">
            </app-person-card>
         </div>

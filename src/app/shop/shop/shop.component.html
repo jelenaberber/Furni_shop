@@ -21,23 +21,17 @@
 <div class="untree_co-section product-section before-footer-section">
   <div class="container">
     <div class="row">
-      @for (product of itemsPerPage; track product.id){
+      @for (product of products; track product.id){
         <div class="col-12 col-md-4 col-lg-3 mb-5">
           <app-item-card [name]="product.name"
                          [price]="product.price"
-                         [path]="product.img.path"
-                         [alt]="product.img.alt"
+                         [path]="product.image.path"
+                         [alt]="product.image.alt"
                          [id]="product.id"
-                         (addToCartClicked)="addToCart($event)">
+                         (addToCartClicked)="addToCart()">
           </app-item-card>
         </div>
       }
-      <mat-paginator [length]="this.filteredProducts.length"
-                     [pageSize]="8"
-                     [pageSizeOptions]="[8, 16, 32]"
-                     aria-label="Select page"
-                     (page)="onPageChange($event)">
-      </mat-paginator>
     </div>
   </div>
 </div>

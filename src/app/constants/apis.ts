@@ -1,7 +1,7 @@
 export const apis = {
-  products: 'products.json',
+  products: 'products?filter=&sort=',
   testimonials: 'testimonials.json',
   team: 'team.json',
   support: 'support.json',
-  categories: 'categories.json'
+  categories: 'categories'
 }
