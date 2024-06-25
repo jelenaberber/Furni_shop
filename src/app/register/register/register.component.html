@@ -1,0 +1,87 @@
+<app-intro-excerpt [title]="'Login'"
+                   [shopPage]="true">
+</app-intro-excerpt>
+<!-- Start Contact Form -->
+<div class="untree_co-section">
+  <div class="container">
+    <div class="block">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-8 pb-4 d-flex justify-content-center">
+          <form class="col-8" [formGroup]="LoginForm" (ngSubmit)="onSubmit()">
+            <div class="col-12 d-flex flex-column">
+              <div class="example-full-width d-flex justify-content-between">
+                <mat-form-field class="col-5">
+                  <mat-label>First name</mat-label>
+                  <input type="text" matInput formControlName="first_name" placeholder="First name">
+                  @if(first_name?.hasError('required')){
+                    <mat-error>
+                      First name is <strong>required</strong>
+                    </mat-error>
+                  } @else if (first_name?.hasError('pattern')){
+                    <mat-error>
+                      Invalid first name. Must start with a capital letter and be between 2 and 19 characters long.
+                    </mat-error>
+                  }
+                </mat-form-field>
+                <mat-form-field class="col-5">
+                  <mat-label>Last name</mat-label>
+                  <input type="text" matInput formControlName="last_name" placeholder="Last name">
+                  @if(last_name?.hasError('required')){
+                    <mat-error>
+                      Last name is <strong>required</strong>
+                    </mat-error>
+                  } @else if (last_name?.hasError('pattern')){
+                    <mat-error>
+                      Invalid last name. Must start with a capital letter and be between 2 and 19 characters long.
+                    </mat-error>
+                  }
+                </mat-form-field>
+              </div>
+              <mat-form-field class="example-full-width">
+                <mat-label>Username</mat-label>
+                <input type="text" matInput formControlName="username" placeholder="Username">
+                @if(username?.hasError('username') && !username?.hasError('required')){
+                  <mat-error>
+                    Please enter a valid username
+                  </mat-error>
+                } @else if (username?.hasError('required')){
+                  <mat-error>
+                    Username is <strong>required</strong>
+                  </mat-error>
+                }
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+                @if(email?.hasError('email') && !email?.hasError('required')){
+                  <mat-error>
+                    Please enter a valid email address
+                  </mat-error>
+                } @else if (email?.hasError('required')){
+                  <mat-error>
+                    Email is <strong>required</strong>
+                  </mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput formControlName="password" placeholder="Password">
+                @if(password?.hasError('required')){
+                  <mat-error>
+                    Password is <strong>required</strong>
+                  </mat-error>
+                } @else if (password?.hasError('pattern')){
+                  <mat-error>
+                    Invalid password. Must start with a capital letter and be between 2 and 19 characters long.
+                  </mat-error>
+                }
+              </mat-form-field>
+            </div>
+            <button (click)="onSubmit()" class="btn btn-dark">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
