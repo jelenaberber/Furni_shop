@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {config} from "../../constants/config";
 
@@ -20,20 +20,33 @@ export class ApiService {
   }
 
   get(id :number | string):Observable<any>{
-    return this.http.get(config.LOCAL + this.apiPath + "/" + id)
+    return this.http.get(config.SERVER + this.apiPath + "/" + id)
   }
-  //
-  // create(dataToSend: any):Observable<any>{
-  //   return this.http.post(config.LOCAL + this.apiPath, dataToSend)
-  // }
-  //
-  // update(id :number | string, dataToSend: any):Observable<any>{
-  //   return this.http.patch(config.LOCAL + this.apiPath + "/" + id, dataToSend)
-  // }
-  //
-  // delete(id :number | string):Observable<any>{
-  //   return this.http.delete(config.LOCAL + this.apiPath + "/" + id)
-  // }
+
+  create(dataToSend: any):Observable<any>{
+    return this.http.post(config.SERVER + this.apiPath, dataToSend)
+  }
+
+  update(id :number | string, dataToSend: any):Observable<any>{
+    return this.http.patch(config.LOCAL + this.apiPath + "/" + id, dataToSend)
+  }
+
+  delete(id :number | string):Observable<any>{
+    return this.http.delete(config.LOCAL + this.apiPath + "/" + id)
+  }
+
+  getFromJson():Observable<any>{
+    return this.http.get(config.LOCAL + this.apiPath)
+  }
+
+  addProductToCart(id: number): Observable<any> {
+    const token = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.post(config.SERVER + this.apiPath + "/" + id, {}, { headers });
+  }
 
 
 }

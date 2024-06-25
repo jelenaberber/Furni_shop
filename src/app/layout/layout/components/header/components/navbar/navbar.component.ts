@@ -1,8 +1,8 @@
-import {Component, OnInit, SimpleChanges, ChangeDetectorRef} from '@angular/core';
-import { RouterLink, RouterLinkActive } from "@angular/router";
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { RouterLink, RouterLinkActive, Router } from "@angular/router";
 import { SharedModule } from "../../../../../../shared/shared.module";
 import { CartService } from "../../../../../../shared/services/cart.service";
-import {Observable, Subscription} from "rxjs";
+import { AuthService } from "../../../../../../shared/services/auth.service";
 
 @Component({
   selector: 'app-navbar',
@@ -17,19 +17,31 @@ import {Observable, Subscription} from "rxjs";
 })
 export class NavbarComponent implements OnInit {
   cartItemCount: number = 0;
-  private subscription: Subscription = new Subscription();
+  isLoggedIn: boolean = false;
+
   constructor(
     private cartService: CartService,
-    private cdRef: ChangeDetectorRef
+    private authService: AuthService,
+    private cdRef: ChangeDetectorRef,
+    private router: Router
   ) {}
 
   ngOnInit() {
-    this.subscription = this.cartService.cartItemCount$.subscribe(
+    this.cartService.cartItemCount$.subscribe(
       count => {
         this.cartItemCount = count;
-        console.log('NavbarComponent: Updated cart item count to', this.cartItemCount);
         this.cdRef.detectChanges();
       }
     );
+
+    this.authService.token$.subscribe(token => {
+      this.isLoggedIn = !!token && !this.authService.isTokenExpired(token);
+      this.cdRef.detectChanges();
+    });
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigateByUrl('/home');
   }
 }

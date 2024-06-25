@@ -39,9 +39,18 @@ export const routes: Routes = [
       {
         path: "checkout",
         loadChildren: () => import("./checkout/checkout.module").then(m => m.CheckoutModule)
-      },{
+      },
+      {
         path: "thankYou",
         loadChildren: () => import("./thank-you/thank-you.module").then(m => m.ThankYouModule)
+      },
+      {
+        path: "login",
+        loadChildren: () => import("./login/login.module").then(m => m.LoginModule)
+      },
+      {
+        path: "register",
+        loadChildren: () => import("./register/register.module").then(m => m.RegisterModule)
       },
       {
         path: "**",

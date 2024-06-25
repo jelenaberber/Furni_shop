@@ -1,53 +1,62 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import { ContactService } from './services/contact.service';
+import { AuthService } from '../../shared/services/auth.service';
 import {SharedModule} from "../../shared/shared.module";
-import {
-  FormControl,
-  FormGroup,
-  FormGroupDirective,
-  FormsModule,
-  NgForm,
-  ReactiveFormsModule,
-  Validators
-} from "@angular/forms";
-import {ErrorStateMatcher} from "@angular/material/core";
 import {CommonModule} from "@angular/common";
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
 
 @Component({
   selector: 'app-contact',
   standalone: true,
   imports: [SharedModule, FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './contact.component.html',
-  styleUrl: './contact.component.css'
+  styleUrls: ['./contact.component.css']
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit {
+  contactForm: FormGroup;
+  successfullySend: boolean = false;
+  emailExistInToken: string | null = null;
+  token: string | null = this.authService.getToken();
 
-  regex: string = '^(?=.*[A-Z])[A-Z][a-zA-Z]{2,19}( [A-Z][a-zA-Z]{2,19})?$';
-  successfullySend : boolean = false;
-
-  contactForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    firstName: new FormControl('', [Validators.required, Validators.pattern(this.regex)]),
-    lastName: new FormControl('', [Validators.required, Validators.pattern(this.regex)]),
-    message: new FormControl('', Validators.required)
+  constructor(private fb: FormBuilder, private contactService: ContactService, private authService: AuthService) {
+    this.contactForm = this.fb.group({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      message: new FormControl('', Validators.required)
     });
+  }
+
+  ngOnInit() {
+    if (this.token) {
+      const decodedToken = this.authService.decodeToken(this.token);
+      if (decodedToken && decodedToken.email) {
+        this.emailExistInToken = decodedToken.email;
+        this.contactForm.patchValue({ email: this.emailExistInToken });
+      }
+    }
+  }
 
   onSubmit(): void {
     if (this.contactForm.valid) {
-      this.successfullySend = true;
-      this.contactForm.reset();
-      Object.keys(this.contactForm.controls).forEach(key => {
-        this.contactForm.get(key)!.markAsUntouched();
+      let dataToSend = {
+        email: this.contactForm.value.email,
+        message: this.contactForm.value.message
+      };
+      this.contactService.create(dataToSend).subscribe(response => {
+        this.contactForm.reset();
+        this.successfullySend = true;
+      }, error => {
+        console.error('Error', error);
       });
     } else {
       this.contactForm.markAllAsTouched();
     }
   }
 
+  get email() {
+    return this.contactForm.get('email');
+  }
+
+  get message() {
+    return this.contactForm.get('message');
+  }
 }

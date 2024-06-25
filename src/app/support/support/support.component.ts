@@ -19,7 +19,7 @@ export class SupportComponent implements OnInit{
 
   supports: IService[] = [];
   ngOnInit() {
-    this.supportService.getAll().subscribe({
+    this.supportService.getFromJson().subscribe({
       next: (data)=>{
         console.log(data)
         this.supports = data;

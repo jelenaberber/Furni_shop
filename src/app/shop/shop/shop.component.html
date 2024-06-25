@@ -28,7 +28,7 @@
                          [path]="product.image.path"
                          [alt]="product.image.alt"
                          [id]="product.id"
-                         (addToCartClicked)="addToCart()">
+                         (addToCartClicked)="addToCart($event)">
           </app-item-card>
         </div>
       }

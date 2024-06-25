@@ -20,7 +20,7 @@ export class ChooseUsComponent implements OnInit{
 
   chooseUs:any = []
   ngOnInit():void {
-    this.chooseUsService.getAll().subscribe({
+    this.chooseUsService.getFromJson().subscribe({
       next: (data)=>{
         console.log(data)
         this.chooseUs = data.splice(0,4);

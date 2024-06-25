@@ -3,5 +3,9 @@ export const apis = {
   testimonials: 'testimonials.json',
   team: 'team.json',
   support: 'support.json',
-  categories: 'categories'
+  categories: 'categories',
+  login: 'login',
+  register: 'register',
+  contact: 'messages',
+  addToCart: 'cart/addProduct',
 }

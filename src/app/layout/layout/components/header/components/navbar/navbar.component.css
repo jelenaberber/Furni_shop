@@ -7,3 +7,6 @@
   letter-spacing: 2px;
   font-weight: 570;
 }
+.logout{
+  cursor: pointer;
+}

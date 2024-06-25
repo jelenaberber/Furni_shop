@@ -6,6 +6,7 @@ import { PageEvent } from "@angular/material/paginator";
 import { CategoriesService } from "./services/categories.service";
 import { ICategory } from "../../shared/interfaces/i-category";
 import { CartService } from "../../shared/services/cart.service";
+import {AddToCartService} from "./services/add-to-cart.service";
 
 @Component({
   selector: 'app-shop',
@@ -14,12 +15,13 @@ import { CartService } from "../../shared/services/cart.service";
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.css']
 })
-export class ShopComponent implements OnInit, OnChanges {
+export class ShopComponent implements OnInit {
 
   constructor(
     private productsService: ProductsService,
     private categoriesService: CategoriesService,
-    private cartService: CartService
+    private cartService: CartService,
+    private addToCartService: AddToCartService
   ) { }
 
   @Output() cartItemCountChange = new EventEmitter<number>();
@@ -57,10 +59,6 @@ export class ShopComponent implements OnInit, OnChanges {
     );
   }
 
-  ngOnChanges(){
-
-  }
-
   getCategories() {
     this.categoriesService.getAll().subscribe({
       next: data => {
@@ -72,8 +70,16 @@ export class ShopComponent implements OnInit, OnChanges {
     })
   }
 
-  addToCart(){
-
+  addToCart(id: number){
+    console.log(id)
+    this.addToCartService.addProductToCart(id).subscribe({
+      next: data => {
+        console.log(data)
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    })
   }
 
   filterProducts(categoryId: number | string): void {
