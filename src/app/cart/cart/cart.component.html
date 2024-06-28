@@ -1,7 +1,19 @@
 <app-intro-excerpt [title]="'Cart'"
                    [shopPage]="true">
 </app-intro-excerpt>
-@if(!localStorage.getItem('cartItems') || localStorage.getItem('cartItems') == '[]' ){
+@if(localStorage.getItem('authToken') == null || tokenExpired){
+  <div class="untree_co-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center pt-5">
+          <h2 class="display-3 text-black">Please log in to purchase items.</h2>
+          <p><a routerLink="/login" class="btn btn-sm btn-outline-black">Log in</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+@else if(products.length == 0){
   <div class="untree_co-section">
     <div class="container">
       <div class="row">
@@ -33,7 +45,7 @@
                 @for (product of products; track product.id){
                   <tr>
                     <td class="product-thumbnail">
-                      <img src="/assets/images/{{ product.img.path }}" alt="{{ product.img.alt }}" class="img-fluid">
+                      <img src="/assets/images/{{ product.image.path }}" alt="{{ product.image.alt }}" class="img-fluid">
                     </td>
                     <td class="product-name">
                       <h2 class="h5 text-black">{{ product.name }}</h2>
@@ -42,17 +54,19 @@
                     <td class="margin-left">
                       <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
                         <div class="input-group-prepend">
-                          <button (click)="decreaseQuantity(product.id)" class="btn btn-outline-black decrease" type="button">&minus;</button>
+                          <button (click)="updateProductQuantity(product.id, 'decrease')" class="btn btn-outline-black decrease" type="button">&minus;</button>
                         </div>
                         <div class="d-flex justify-content-center col-6">
                           <p>{{ product.quantity}}</p>
                         </div>
                         <div class="input-group-append">
-                          <button (click)="increaseQuantity(product.id)" class="btn btn-outline-black increase" type="button">&plus;</button>
+                          <button (click)="updateProductQuantity(product.id, 'increase')" class="btn btn-outline-black increase" type="button">&plus;</button>
                         </div>
                       </div>
                     </td>
-                    <td><button (click)="removeProductFromCart(product.id)" class="btn btn-black btn-sm">X</button></td>
+                    <td>
+                      <button (click)="removeProductFromCart(product.id)" class="btn btn-outline-black increase" type="button">X</button>
+                    </td>
                   </tr>
                 }
               </tbody>

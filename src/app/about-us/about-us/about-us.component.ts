@@ -3,6 +3,7 @@ import {CommonModule} from "@angular/common";
 import {SharedModule} from "../../shared/shared.module";
 import {TeamService} from "./services/team.service";
 import {ITeamMember} from "../../shared/interfaces/i-team-member";
+import {AuthService} from "../../shared/services/auth.service";
 
 @Component({
   selector: 'app-about-us',
@@ -15,10 +16,14 @@ export class AboutUsComponent implements OnInit{
 
   constructor(
     private teamService: TeamService,
+    private authService: AuthService,
   ) { }
 
+  token: string|null = this.authService.getToken();
   team: ITeamMember[] = [];
+
   ngOnInit():void {
+    this.authService.redirectToAdminPanel(this.token)
     this.teamService.getAll().subscribe({
       next: (data)=>{
         this.team = data;

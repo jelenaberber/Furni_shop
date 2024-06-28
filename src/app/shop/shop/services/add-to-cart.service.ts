@@ -9,6 +9,6 @@ import {ApiService} from "../../../shared/services/api.service";
 export class AddToCartService extends ApiService{
 
   constructor(http: HttpClient) {
-    super(http, apis.addToCart);
+    super(http, apis.cart);
   }
 }

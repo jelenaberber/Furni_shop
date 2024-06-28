@@ -2,11 +2,12 @@ import {Component, OnInit, EventEmitter, Output, OnChanges} from '@angular/core'
 import { ProductsService } from "./services/products.service";
 import { IProduct } from "../../shared/interfaces/i-product";
 import { SharedModule } from "../../shared/shared.module";
-import { PageEvent } from "@angular/material/paginator";
+import { Router } from '@angular/router';
 import { CategoriesService } from "./services/categories.service";
 import { ICategory } from "../../shared/interfaces/i-category";
 import { CartService } from "../../shared/services/cart.service";
 import {AddToCartService} from "./services/add-to-cart.service";
+import {AuthService} from "../../shared/services/auth.service";
 
 @Component({
   selector: 'app-shop',
@@ -20,8 +21,9 @@ export class ShopComponent implements OnInit {
   constructor(
     private productsService: ProductsService,
     private categoriesService: CategoriesService,
-    private cartService: CartService,
-    private addToCartService: AddToCartService
+    private router: Router,
+    private addToCartService: AddToCartService,
+    private authService: AuthService,
   ) { }
 
   @Output() cartItemCountChange = new EventEmitter<number>();
@@ -29,6 +31,7 @@ export class ShopComponent implements OnInit {
   category_id: any = 0;
   sort: any = '';
   categories: ICategory[] = [];
+  token: string | null = this.authService.getToken();
 
   sortBy: any[] = [
     { 'id': 'asc', 'name': 'Price asc' },
@@ -36,6 +39,7 @@ export class ShopComponent implements OnInit {
   ];
 
   ngOnInit() {
+    this.authService.redirectToAdminPanel(this.token)
     this.getProducts('0', '');
     this.getCategories();
   }
@@ -71,15 +75,20 @@ export class ShopComponent implements OnInit {
   }
 
   addToCart(id: number){
-    console.log(id)
-    this.addToCartService.addProductToCart(id).subscribe({
-      next: data => {
-        console.log(data)
-      },
-      error: (err) => {
-        console.log(err)
-      }
-    })
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+      this.router.navigate(['/login']);
+    }
+    else{
+      this.addToCartService.addProductToCart(id).subscribe({
+        next: data => {
+          console.log(data)
+        },
+        error: (err) => {
+          console.log(err)
+        }
+      })
+    }
   }
 
   filterProducts(categoryId: number | string): void {

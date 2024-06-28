@@ -53,6 +53,10 @@ export const routes: Routes = [
         loadChildren: () => import("./register/register.module").then(m => m.RegisterModule)
       },
       {
+        path: "adminPanel",
+        loadChildren: () => import("./admin-panel/admin-panel.module").then(m => m.AdminPanelModule)
+      },
+      {
         path: "**",
         pathMatch: "full",
         component: NotFoundComponent,

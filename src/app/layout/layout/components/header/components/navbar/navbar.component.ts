@@ -18,6 +18,9 @@ import { AuthService } from "../../../../../../shared/services/auth.service";
 export class NavbarComponent implements OnInit {
   cartItemCount: number = 0;
   isLoggedIn: boolean = false;
+  token: string | null = this.authService.getToken();
+  decodedToken: any = '';
+  tokenExpired: boolean = false;
 
   constructor(
     private cartService: CartService,
@@ -27,17 +30,22 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.cartService.cartItemCount$.subscribe(
-      count => {
-        this.cartItemCount = count;
-        this.cdRef.detectChanges();
-      }
-    );
-
     this.authService.token$.subscribe(token => {
       this.isLoggedIn = !!token && !this.authService.isTokenExpired(token);
       this.cdRef.detectChanges();
     });
+    if(this.token){
+      this.cartService.getProductsInCart().subscribe({
+        next: data => {
+          this.cartItemCount = data.products.length;
+        },
+        error: error => {
+          console.log(error)
+        }
+      })
+      this.decodedToken = this.authService.decodeToken(this.token)
+      this.tokenExpired = this.authService.isTokenExpired(this.token)
+    }
   }
 
   logout() {

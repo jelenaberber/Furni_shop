@@ -1,27 +1,14 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {HttpClient} from "@angular/common/http";
+import {apis} from "../../constants/apis";
+import {ApiService} from "./api.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class CartService {
+export class CartService extends ApiService{
 
-  private cartItemCountSubject = new BehaviorSubject<number>(0);
-  cartItemCount$ = this.cartItemCountSubject.asObservable();
-
-  constructor() {
-    this.updateCartItemCount();
-    window.addEventListener('storage', (event) => {
-      if (event.key === 'cartItems') {
-        this.updateCartItemCount();
-      }
-    });
+  constructor(http: HttpClient) {
+    super(http, apis.cart);
   }
-
-  private updateCartItemCount(): void {
-    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
-    const itemCount = cartItems.length;
-    this.cartItemCountSubject.next(itemCount);
-  }
-
 }

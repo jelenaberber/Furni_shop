@@ -5,7 +5,7 @@ import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 import { provideHttpClient } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './app/auth.interceptor';  // Prilagodite putanju do `auth.interceptor.ts` fajla
+import { AuthInterceptor } from './app/auth.interceptor';
 
 const appProviders = [
   provideHttpClient(),

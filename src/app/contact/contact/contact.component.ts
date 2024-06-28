@@ -26,6 +26,7 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.authService.redirectToAdminPanel(this.token)
     if (this.token) {
       const decodedToken = this.authService.decodeToken(this.token);
       if (decodedToken && decodedToken.email) {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -9,6 +9,8 @@ import {
 import { IntroExcerptComponent } from '../../shared/components/intro-excerpt/intro-excerpt.component';
 import {SharedModule} from "../../shared/shared.module";
 import {LoginService} from "./services/login.service";
+import {AuthService} from "../../shared/services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -22,12 +24,22 @@ import {LoginService} from "./services/login.service";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService,
+              private authService: AuthService,
+              private router: Router,) {
   }
   regex: string = '^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)[A-Za-z\\d]{8,30}$';
   successfullySend: boolean = false;
+  errorMessage: string | null = '';
+  token: string | null = this.authService.getToken();
+
+  ngOnInit() {
+    if(this.token && !this.authService.isTokenExpired(this.token)){
+      this.router.navigate(['/home']);
+    }
+  }
 
   LoginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -45,8 +57,16 @@ export class LoginComponent {
         const token = response.authorisation.token;
         localStorage.setItem('authToken', token);
         window.location.href = '/home';
+        let decodedToken = this.authService.decodeToken(response.authorisation.token);
+
+        if(decodedToken.role_id != 2){
+          window.location.href = '/home';
+        }
+        else{
+          window.location.href = '/adminPanel';
+        }
       }, error => {
-        console.error('Error', error);
+        this.errorMessage = error.message;
       });
     } else {
       this.LoginForm.markAllAsTouched();

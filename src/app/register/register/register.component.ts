@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {LoginService} from "../../login/login/services/login.service";
 import {SharedModule} from "../../shared/shared.module";
 import {RegisterService} from "./services/register.service";
+import {AuthService} from "../../shared/services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -14,12 +16,21 @@ import {RegisterService} from "./services/register.service";
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
-export class RegisterComponent {
-  constructor(private registerService: RegisterService) {
+export class RegisterComponent implements OnInit{
+  constructor(private registerService: RegisterService,
+              private authService: AuthService,
+              private router: Router,) {
   }
   regexPassword: string = '^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)[A-Za-z\\d]{8,30}$';
   regex: string = '^(?=.*[A-Z])[A-Z][a-zA-Z]{2,19}( [A-Z][a-zA-Z]{2,19})?$';
-  successfullySend: boolean = false;
+  errorMessage: string | null = '';
+  token: string | null = localStorage.getItem('authToken');
+
+  ngOnInit() {
+    if(this.token && !this.authService.isTokenExpired(this.token)){
+      this.router.navigate(['/home']);
+    }
+  }
 
   LoginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -44,7 +55,7 @@ export class RegisterComponent {
         localStorage.setItem('authToken', token);
         window.location.href = '/home';
       }, error => {
-        console.error('Error', error);
+        this.errorMessage = error.message;
       });
     } else {
       this.LoginForm.markAllAsTouched();

@@ -54,6 +54,7 @@ import {ItemCardComponent} from "./components/item-card/item-card.component";
 import {DropDownListComponent} from "./components/drop-down-list/drop-down-list.component";
 import {PersonCardComponent} from "./components/person-card/person-card.component";
 import {CurrencyPipe} from "@angular/common";
+import {TableComponent} from "./components/table/table.component";
 
 // Services
 import {CartService} from "./services/cart.service";
@@ -107,7 +108,8 @@ import {CartService} from "./services/cart.service";
     ItemCardComponent,
     DropDownListComponent,
     PersonCardComponent,
-    CurrencyPipe
+    CurrencyPipe,
+    TableComponent
   ],
   exports: [
     MatAutocompleteModule,
@@ -155,7 +157,8 @@ import {CartService} from "./services/cart.service";
     ItemCardComponent,
     DropDownListComponent,
     PersonCardComponent,
-    CurrencyPipe
+    CurrencyPipe,
+    TableComponent
   ],
   providers: [CartService]
 })

@@ -22,7 +22,7 @@ export class SliderComponent implements OnInit{
 
   testimonials: ITestimonials[] = [];
   ngOnInit() {
-    this.testimonialsService.getFromJson().subscribe({
+    this.testimonialsService.getAll().subscribe({
       next: (data)=>{
         console.log(data)
         this.testimonials = data;

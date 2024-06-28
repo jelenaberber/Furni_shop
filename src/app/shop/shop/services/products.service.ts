@@ -17,11 +17,5 @@ export class ProductsService extends ApiService{
     super(http, apis.products);
   }
 
-  getProducts(categoryId: number | string, sort: string): Observable<IProduct[]> {
-    const params = {
-      category: categoryId.toString(),
-      sort: sort
-    };
-    return this.http.get<IProduct[]>(config.SERVER + this.apiPath, { params });
-  }
+
 }
