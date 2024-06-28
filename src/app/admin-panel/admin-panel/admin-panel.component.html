@@ -1,0 +1,17 @@
+<div class="container mt-5">
+  <div class="col-12">
+    <p class="text-success">{{ messageShow }}</p>
+  </div>
+  <div class="col-12">
+    <h1 class="text-center">Users {{ numberOfUsers }}</h1>
+    <app-table [columns]="tableUsersColumns" [data]="users" [roleOptions]="roleOptions" (valueChange)="onValueChange($event)" (delete)="onDeleteUser($event)"></app-table>
+  </div>
+  <div class="col-12">
+    <h1 class="text-center">Messages {{ numberOfMessages }}</h1>
+    <app-table [columns]="tableMessagesColumns" [data]="messages" (delete)="onDeleteMessage($event)"></app-table>
+  </div>
+  <div class="col-12">
+    <h1 class="text-center">Products {{ numberOfProducts }}</h1>
+    <app-table [columns]="tableProductsColumns" [data]="products" [isProductTable]="true" (valueChange)="onValueChange($event)" (delete)="onDeleteProduct($event)"></app-table>
+  </div>
+</div>
