@@ -3,7 +3,8 @@
     <thead>
     <tr>
       <th *ngFor="let col of columns" scope="col">{{ col.displayName }}</th>
-      <th scope="col">Actions</th>
+      <th scope="col">Delete</th>
+      <th *ngIf="changeOption" scope="col">Change</th>
     </tr>
     </thead>
     <tbody>
@@ -11,12 +12,13 @@
       <td *ngFor="let col of columns">
         <ng-container [ngSwitch]="col.colName">
           <ng-container *ngSwitchCase="'available'">
-            <select [value]="getValue(d, col.colName)" (change)="onValueChange(d.id, col.colName, $event)">
-              <option *ngFor="let option of availableOptions" [value]="option">{{ option }}</option>
+            <select class="btn btn-light dropdown-toggle" [value]="getValue(d, col.colName)" (change)="onValueChange(d.id, col.colName, $event)">
+              <option [value]="0" [selected]="getValue(d, col.colName) === 0">No</option>
+              <option [value]="1" [selected]="getValue(d, col.colName) === 1">Yes</option>
             </select>
           </ng-container>
           <ng-container *ngSwitchCase="'role_id'">
-            <select [value]="getValue(d, col.colName)" (change)="onValueChange(d.id, col.colName, $event)">
+            <select class="btn btn-light dropdown-toggle" [value]="getValue(d, col.colName)" (change)="onValueChange(d.id, col.colName, $event)">
               <option *ngFor="let option of roleOptions" [value]="option.id" [selected]="option.id === getValue(d, col.colName)">{{ option.name }}</option>
             </select>
           </ng-container>
@@ -27,6 +29,9 @@
       </td>
       <td>
         <button (click)="onDelete(d.id)" class="btn btn-danger">Delete</button>
+      </td>
+      <td *ngIf="changeOption">
+        <button data-toggle="modal" data-target=".bd-example-modal-lg" (click)="onChange(d.id)" class="btn btn-light">Change product</button>
       </td>
     </tr>
     </tbody>

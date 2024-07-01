@@ -6,7 +6,6 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { IntroExcerptComponent } from '../../shared/components/intro-excerpt/intro-excerpt.component';
 import {SharedModule} from "../../shared/shared.module";
 import {LoginService} from "./services/login.service";
 import {AuthService} from "../../shared/services/auth.service";
@@ -17,7 +16,6 @@ import {Router} from "@angular/router";
   standalone: true,
   imports: [
     FormsModule,
-    IntroExcerptComponent,
     ReactiveFormsModule,
     SharedModule,
   ],

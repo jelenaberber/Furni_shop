@@ -1,1 +1,63 @@
-<p>modal works!</p>
+<div class="modal" [class.show]="modalVisible" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" [style.display]="modalVisible ? 'block' : 'none'">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel">{{ product ? 'Edit Product' : 'Add New Product' }}</h5>
+      </div>
+      <div class="modal-body">
+        <form class="col-8" [formGroup]="ChangeProduct">
+          <div class="col-12 d-flex flex-column">
+            <mat-form-field class="example-full-width">
+              <mat-label>Name</mat-label>
+              <input type="text" matInput formControlName="name">
+              <mat-error *ngIf="name?.hasError('required')">
+                Name is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Description</mat-label>
+              <textarea matInput formControlName="description" cols="30" rows="10"></textarea>
+              <mat-error *ngIf="description?.hasError('required')">
+                Description is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Category</mat-label>
+              <mat-select formControlName="category_id">
+                <mat-option *ngFor="let category of categories" [value]="category.id">
+                  {{ category.name }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="category_id?.hasError('required')">
+                Category is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Price</mat-label>
+              <input type="number" matInput formControlName="price">
+              <mat-error *ngIf="ChangeProduct?.get('price')?.hasError('required')">
+                Price is <strong>required</strong>
+              </mat-error>
+              <mat-error *ngIf="ChangeProduct?.get('price')?.hasError('min')">
+                Price must be greater than 0.
+              </mat-error>
+            </mat-form-field>
+            <p *ngIf="message" class="text-danger">{{ message }}</p>
+          </div>
+          @if(changeProduct){
+            <button type="submit" class="btn btn-dark mt-3" (click)="onChangeProduct()">Update product</button>
+          }
+          @else{
+            <button type="submit" class="btn btn-dark mt-3" (click)="onAddProduct()">Add product</button>
+          }
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

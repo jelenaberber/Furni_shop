@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {ModalComponent} from "../modal/modal.component";
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ModalComponent],
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
@@ -13,10 +14,11 @@ export class TableComponent {
   @Input() data: any = [];
   @Input() isProductTable: boolean = false;
   @Input() roleOptions: { name: string, id: number }[] = [];
+  @Input() changeOption: boolean = false;
   @Output() valueChange = new EventEmitter<{ id: number, colName: string, value: any }>();
   @Output() delete = new EventEmitter<number>();
+  @Output() change = new EventEmitter<number>();
 
-  availableOptions: string[] = ['Yes', 'No'];
 
   getValue(data: any, colName: string): any {
     if (colName === 'role_id') {
@@ -32,5 +34,9 @@ export class TableComponent {
 
   onDelete(id: number) {
     this.delete.emit(id);
+  }
+
+  onChange(id: number) {
+    this.change.emit(id);
   }
 }

@@ -1,8 +1,9 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import { RouterLink, RouterLinkActive, Router } from "@angular/router";
 import { SharedModule } from "../../../../../../shared/shared.module";
 import { CartService } from "../../../../../../shared/services/cart.service";
 import { AuthService } from "../../../../../../shared/services/auth.service";
+import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'app-navbar',
@@ -10,20 +11,17 @@ import { AuthService } from "../../../../../../shared/services/auth.service";
   imports: [
     RouterLinkActive,
     RouterLink,
-    SharedModule
+    SharedModule,
+    CommonModule,
   ],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  cartItemCount: number = 0;
   isLoggedIn: boolean = false;
-  token: string | null = this.authService.getToken();
-  decodedToken: any = '';
-  tokenExpired: boolean = false;
+  isAdmin: boolean = false;
 
   constructor(
-    private cartService: CartService,
     private authService: AuthService,
     private cdRef: ChangeDetectorRef,
     private router: Router
@@ -32,20 +30,14 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.authService.token$.subscribe(token => {
       this.isLoggedIn = !!token && !this.authService.isTokenExpired(token);
+      if (this.isLoggedIn && token) {
+        const decodedToken = this.authService.decodeToken(token);
+        this.isAdmin = decodedToken.role_id === 2;
+      } else {
+        this.isAdmin = false;
+      }
       this.cdRef.detectChanges();
     });
-    if(this.token){
-      this.cartService.getProductsInCart().subscribe({
-        next: data => {
-          this.cartItemCount = data.products.length;
-        },
-        error: error => {
-          console.log(error)
-        }
-      })
-      this.decodedToken = this.authService.decodeToken(this.token)
-      this.tokenExpired = this.authService.isTokenExpired(this.token)
-    }
   }
 
   logout() {

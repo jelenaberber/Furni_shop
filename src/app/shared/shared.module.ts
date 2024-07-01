@@ -58,6 +58,7 @@ import {TableComponent} from "./components/table/table.component";
 
 // Services
 import {CartService} from "./services/cart.service";
+import {ModalComponent} from "./components/modal/modal.component";
 
 @NgModule({
   declarations: [ ],
@@ -109,7 +110,8 @@ import {CartService} from "./services/cart.service";
     DropDownListComponent,
     PersonCardComponent,
     CurrencyPipe,
-    TableComponent
+    TableComponent,
+    ModalComponent
   ],
   exports: [
     MatAutocompleteModule,
@@ -158,7 +160,8 @@ import {CartService} from "./services/cart.service";
     DropDownListComponent,
     PersonCardComponent,
     CurrencyPipe,
-    TableComponent
+    TableComponent,
+    ModalComponent
   ],
   providers: [CartService]
 })

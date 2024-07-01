@@ -1,31 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from "@angular/router";
 import { AuthService } from "../../shared/services/auth.service";
-import { TableComponent } from "../../shared/components/table/table.component";
 import { UserService } from "./services/user.service";
 import { ContactService } from "../../contact/contact/services/contact.service";
 import { ProductsService } from "../../shop/shop/services/products.service";
-import {IUser} from "../../shared/interfaces/iuser";
-import {IMessage} from "../../shared/interfaces/imessage";
-import {ProductsAdminService} from "./services/productsAdmin.service";
+import { IUser } from "../../shared/interfaces/iuser";
+import { IMessage } from "../../shared/interfaces/imessage";
+import { ProductsAdminService } from "./services/productsAdmin.service";
+import { SharedModule } from "../../shared/shared.module";
+import { ModalComponent } from "../../shared/components/modal/modal.component";
 
 @Component({
   selector: 'app-admin-panel',
   standalone: true,
-  imports: [TableComponent],
+  imports: [SharedModule, ModalComponent],
   templateUrl: './admin-panel.component.html',
   styleUrls: ['./admin-panel.component.css']
 })
 export class AdminPanelComponent implements OnInit {
-  constructor(
-    private router: Router,
-    private authService: AuthService,
-    private userService: UserService,
-    private contactService: ContactService,
-    private productsService: ProductsService,
-    private productAdminService: ProductsAdminService
-  ) {}
-
+  @ViewChild(ModalComponent) modal!: ModalComponent;
   token: string | null = localStorage.getItem("authToken");
   numberOfUsers: number = 0;
   numberOfMessages: number = 0;
@@ -52,10 +45,21 @@ export class AdminPanelComponent implements OnInit {
     { name: 'Admin', id: 2 },
     { name: 'User', id: 1 }
   ];
-  users:IUser[] = [];
+  users: IUser[] = [];
   messages: IMessage[] = [];
-  products = [];
+  products: any[] = [];
   messageShow: string = '';
+  selectedProduct: any = [];
+  categories: any = []
+
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private userService: UserService,
+    private contactService: ContactService,
+    private productsService: ProductsService,
+    private productAdminService: ProductsAdminService
+  ) {}
 
   ngOnInit() {
     if (!this.token || this.authService.isTokenExpired(this.token)) {
@@ -70,19 +74,10 @@ export class AdminPanelComponent implements OnInit {
 
     this.userService.getAllAdminPanel().subscribe({
       next: data => {
-        console.log(data);
-        this.userService.getAllAdminPanel().subscribe({
-          next: (data: IUser[]) => {
-            this.users = data.map((user: IUser) => ({
-              ...user,
-              role_id: user.role.id
-            }));
-            this.numberOfUsers = data.length;
-          },
-          error: err => {
-            console.log(err);
-          }
-        });
+        this.users = data.map((user: IUser) => ({
+          ...user,
+          role_id: user.role.id
+        }));
         this.numberOfUsers = data.length;
       },
       error: err => {
@@ -92,7 +87,6 @@ export class AdminPanelComponent implements OnInit {
 
     this.contactService.getAllAdminPanel().subscribe({
       next: data => {
-        console.log(data);
         this.messages = data;
         this.numberOfMessages = data.length;
       },
@@ -101,9 +95,12 @@ export class AdminPanelComponent implements OnInit {
       }
     });
 
-    this.productsService.getAllAdminPanel().subscribe({
+    this.getProducts();
+  }
+
+  getProducts(){
+    this.productAdminService.getAllAdminPanel().subscribe({
       next: data => {
-        console.log(data);
         this.products = data;
         this.numberOfProducts = data.length;
       },
@@ -114,36 +111,34 @@ export class AdminPanelComponent implements OnInit {
   }
 
   onValueChange(event: { id: number, colName: string, value: any }) {
-    console.log('Value changed', event);
-    this.messageShow = ''
+    this.messageShow = '';
     if (event.colName === 'role_id') {
       let idUser = event.id;
       let dataToSend = {
         role_id: event.value,
-      }
+      };
       this.userService.update(idUser, dataToSend).subscribe({
         next: data => {
-          this.messageShow = 'User role updated successfully'
+          this.messageShow = 'User role updated successfully';
         },
         error: err => {
           console.log('Error updating user role', err);
         }
       });
-    }
-    else if (event.colName === 'available') {
-      // this.productsService.updateProductAvailability(event.id, event.value).subscribe({
-      //   next: data => {
-      //     console.log('Product availability updated successfully', data);
-      //   },
-      //   error: err => {
-      //     console.log('Error updating product availability', err);
-      //   }
-      // });
+    } else if (event.colName === 'available') {
+      this.productAdminService.changeAvailability(event.id).subscribe({
+        next: data => {
+          console.log('Product availability updated successfully', data);
+        },
+        error: err => {
+          console.log('Error updating product availability', err);
+        }
+      });
     }
   }
 
   onDeleteUser(id: number) {
-    this.messageShow = ''
+    this.messageShow = '';
     this.userService.delete(id).subscribe({
       next: data => {
         this.messageShow = 'User deleted successfully';
@@ -157,11 +152,9 @@ export class AdminPanelComponent implements OnInit {
   }
 
   onDeleteMessage(id: number) {
-    console.log('Deleting message', id);
     this.contactService.delete(id).subscribe({
       next: data => {
-        console.log('Message deleted successfully', data);
-        this.messages = this.messages.filter((message: IMessage) => message.id !== id); // Ispravljena sintaksa
+        this.messages = this.messages.filter((message: IMessage) => message.id !== id);
         this.numberOfMessages--;
       },
       error: err => {
@@ -171,10 +164,8 @@ export class AdminPanelComponent implements OnInit {
   }
 
   onDeleteProduct(id: number) {
-    console.log('Deleting product', id);
     this.productAdminService.delete(id).subscribe({
       next: data => {
-        console.log('Product deleted successfully', data);
         this.products = this.products.filter((product: any) => product.id !== id);
         this.numberOfProducts--;
       },
@@ -182,6 +173,26 @@ export class AdminPanelComponent implements OnInit {
         console.log('Error deleting product', err);
       }
     });
+  }
 
+  onChangeProduct(id: number) {
+    this.productAdminService.get(id).subscribe({
+      next: data => {
+        this.selectedProduct = data;
+        this.modal.open(this.selectedProduct);
+      },
+      error: err =>{
+        console.log(err);
+      }
+    })
+  }
+
+  openModalToAddProduct() {
+    this.selectedProduct = null; // Postavljamo selectedProduct na null da bismo otvorili praznu formu
+    this.modal.open(this.selectedProduct);
+  }
+
+  onProductUpdated(data: any) {
+    this.getProducts();
   }
 }

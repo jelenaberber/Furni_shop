@@ -1,46 +1,43 @@
-<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
+<nav class="custom-navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
   <div class="container">
     <a class="navbar-brand" routerLink="/home">Furni<span>.</span></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni"
+            aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarsFurni">
-      @if(!token || decodedToken.role_id != 2 || tokenExpired){
-        <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-          <li routerLinkActive="active">
-            <a class="nav-link" routerLink="/home">Home</a>
-          </li>
-          <li routerLinkActive="active">
-            <a class="nav-link" routerLink="/shop">Shop</a>
-          </li>
-          <li routerLinkActive="active">
-            <a class="nav-link" routerLink="/aboutUs">About us</a>
-          </li>
-          <li routerLinkActive="active"><a class="nav-link" routerLink="/support" >Services</a></li>
-          <li routerLinkActive="active"><a class="nav-link" routerLink="/contact">Contact us</a></li>
-        </ul>
-      }
+      <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0" *ngIf="!isAdmin">
+        <li routerLinkActive="active">
+          <a class="nav-link" routerLink="/home">Home</a>
+        </li>
+        <li routerLinkActive="active">
+          <a class="nav-link" routerLink="/shop">Shop</a>
+        </li>
+        <li routerLinkActive="active">
+          <a class="nav-link" routerLink="/aboutUs">About us</a>
+        </li>
+        <li routerLinkActive="active">
+          <a class="nav-link" routerLink="/support">Services</a>
+        </li>
+        <li routerLinkActive="active">
+          <a class="nav-link" routerLink="/contact">Contact us</a>
+        </li>
+      </ul>
       <ul class="custom-navbar-cta navbar-nav">
-        @if(isLoggedIn){
-          <li>
-            <a class="nav-link logout" (click)="logout()">Log out</a>
-          </li>
-        }
-        @if(!isLoggedIn){
-          <li routerLinkActive="active">
-            <a class="nav-link" routerLink="/login">Log in</a>
-          </li>
-          <li routerLinkActive="active">
-            <a class="nav-link" routerLink="/register">Registration</a>
-          </li>
-        }
-        @if(!token || decodedToken.role_id != 2){
-          <li routerLinkActive="active" class="mt-2 mx-2">
-            <a routerLink="/cart" class="text-white">
-              <mat-icon matBadge="{{ cartItemCount }}" aria-hidden="false" matBadgeColor="warn">shopping_cart</mat-icon>
-            </a>
-          </li>
-        }
+        <li *ngIf="isLoggedIn">
+          <a class="nav-link logout" (click)="logout()">Log out</a>
+        </li>
+        <li *ngIf="!isLoggedIn">
+          <a class="nav-link" routerLink="/login">Log in</a>
+        </li>
+        <li *ngIf="!isLoggedIn">
+          <a class="nav-link" routerLink="/register">Registration</a>
+        </li>
+        <li *ngIf="!isLoggedIn" class="mx-2">
+          <a routerLink="/cart" class="text-white">
+            <img src="/assets/images/cart.svg" class="nav-link" alt="Cart">
+          </a>
+        </li>
       </ul>
     </div>
   </div>

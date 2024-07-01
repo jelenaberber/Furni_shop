@@ -12,6 +12,8 @@
   </div>
   <div class="col-12">
     <h1 class="text-center">Products {{ numberOfProducts }}</h1>
-    <app-table [columns]="tableProductsColumns" [data]="products" [isProductTable]="true" (valueChange)="onValueChange($event)" (delete)="onDeleteProduct($event)"></app-table>
+    <app-table [columns]="tableProductsColumns" [data]="products" [isProductTable]="true" (valueChange)="onValueChange($event)" (delete)="onDeleteProduct($event)" [changeOption]="true" (change)="onChangeProduct($event)">></app-table>
   </div>
+  <button class="btn btn-primary" (click)="openModalToAddProduct()">Add new product</button>
 </div>
+<app-modal (productUpdated)="onProductUpdated($event)"></app-modal>

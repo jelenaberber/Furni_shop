@@ -30,7 +30,11 @@ export class ApiService {
   }
 
   get(id :number | string):Observable<any>{
-    return this.http.get(config.SERVER + this.apiPath + "/" + id)
+    const token = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get(config.SERVER + this.apiPath + "/" + id, {headers})
   }
 
   create(dataToSend: any): Observable<any> {
@@ -52,7 +56,17 @@ export class ApiService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.post(config.SERVER + this.apiPath, dataToSend, {headers})
+    return this.http.post(config.SERVER + this.apiPath, dataToSend, {headers}).pipe(
+      catchError((error: HttpErrorResponse) => {
+        let errorMsg = 'Server error';
+        if (error.error instanceof ErrorEvent) {
+          errorMsg = `Error: ${error.error.message}`;
+        } else if (error.error && error.error.message) {
+          errorMsg = error.error.message;
+        }
+        return throwError(() => new Error(errorMsg));
+      })
+    );
   }
 
   update(id :number | string, dataToSend: any):Observable<any>{
@@ -61,6 +75,32 @@ export class ApiService {
       'Authorization': `Bearer ${token}`
     });
     return this.http.patch(config.SERVER + this.apiPath + "/" + id, dataToSend, { headers })
+  }
+
+  changeAvailability(id :number):Observable<any>{
+    const token = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.patch(config.SERVER + this.apiPath + "/" + id, {},{ headers })
+  }
+
+  updateProduct(id :number | string, dataToSend: any):Observable<any>{
+    const token = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.put(config.SERVER + this.apiPath + "/" + id, dataToSend, { headers }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        let errorMsg = 'Server error';
+        if (error.error instanceof ErrorEvent) {
+          errorMsg = `Error: ${error.error.message}`;
+        } else if (error.error && error.error.message) {
+          errorMsg = error.error.message;
+        }
+        return throwError(() => new Error(errorMsg));
+      })
+    );
   }
 
   delete(id :number ):Observable<any>{
